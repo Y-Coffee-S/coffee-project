@@ -8,3 +8,16 @@ td, th {
     padding: 5px 10px;
 }
 */
+/*#coffee-header {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
+.row-6 {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.coffee > p {
+    color: grey;
+}
