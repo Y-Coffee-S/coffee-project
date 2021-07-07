@@ -1,4 +1,5 @@
 "use strict"
+
 // Main Roast Section
 function renderCoffee(coffee) {
     var html = '<div class="coffee">';
@@ -12,7 +13,7 @@ function renderCoffee(coffee) {
 
 function renderCoffees(coffees) {
     var html = '';
-    for(var i = coffees.length - 1; i >= 0; i--) {
+    for (var i = coffees.length - 1; i >= 0; i--) {
         html += renderCoffee(coffees[i]);
     }
     return html;
@@ -22,7 +23,7 @@ function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
     var selectedRoast = roastSelection.value;
     var filteredCoffees = [];
-    coffees.forEach(function(coffee) {
+    coffees.forEach(function (coffee) {
         if (coffee.roast === selectedRoast) {
             filteredCoffees.push(coffee);
         }
@@ -57,57 +58,71 @@ tbody.innerHTML = renderCoffees(coffees);
 
 submitButton.addEventListener('click', updateCoffees);
 
+//Ascending Order
 ////////////////////////////////////////////////////////////////////////
+coffees.sort(function compareCoffee(a, b) {
+    const value1 = a.name.toUpperCase();
+    const value2 = b.name.toUpperCase();
+    if (value1 < value2)
+        return -1
+    if (value1 > value2)
+        return 1
+    return 0
+});
+
+
+////////////////////////////////////////////////////////////////////////
+
 
 // Coffee Name Section Below
 
 ////////////////////////////////////////////////////////////////////////
 
-var interval = 0;
-var callInterval = null;
-
-function registerEvents(){
-    $("#input-form").on("keydown", function(e){
-        var keyCode = e.keyCode ? e.keyCode : e.which;
-        console.log(keyCode);
-        if(!callInterval){
-            intervalInit();
-        }
-        else{
-            resetInterval();
-        }
-    });
-}
-
-function intervalInit(){
-    interval = 0;
-    callInterval = setInterval(function(){
-        interval++;
-        if(interval >=1){
-            fetchAutoCompleteData($("#input-form").val());
-            window.clearInterval(callInterval);
-            callInterval = null;
-        }
-    },1000);
-}
-function renderCoffees(coffees) {
-    var html = '';
-    for(var i = coffees.length - 1; i >= 0; i--) {
-        html += renderCoffee(coffees[i]);
-    }
-    return html;
-}
-function resetInterval(){
-    window.clearInterval(callInterval);
-    intervalInit()
-}
-
-function fetchAutoCompleteData(coffees){
-    console.log("Data: ", coffees);
-}
-(function(){
-    registerEvents();
-})()
+// var interval = 0;
+// var callInterval = null;
+//
+// function registerEvents(){
+//     $("#input-form").on("keydown", function(e){
+//         var keyCode = e.keyCode ? e.keyCode : e.which;
+//         console.log(keyCode);
+//         if(!callInterval){
+//             intervalInit();
+//         }
+//         else{
+//             resetInterval();
+//         }
+//     });
+// }
+//
+// function intervalInit(){
+//     interval = 0;
+//     callInterval = setInterval(function(){
+//         interval++;
+//         if(interval >=1){
+//             fetchAutoCompleteData($("#input-form").val());
+//             window.clearInterval(callInterval);
+//             callInterval = null;
+//         }
+//     },1000);
+// }
+// function renderCoffees(coffees) {
+//     var html = '';
+//     for(var i = coffees.length - 1; i >= 0; i--) {
+//         html += renderCoffee(coffees[i]);
+//     }
+//     return html;
+// }
+// function resetInterval(){
+//     window.clearInterval(callInterval);
+//     intervalInit()
+// }
+//
+// function fetchAutoCompleteData(coffees){
+//     console.log("Data: ", coffees);
+// }
+// (function(){
+//     registerEvents();
+// })()
 // var bandA = document.querySelector('#input-form'); // Location of what's being typed in
 // bandA.addEventListener('keyup', function test() {
 //     document.querySelector('#coffees').innerHTML = renderCoffees(coffees);
