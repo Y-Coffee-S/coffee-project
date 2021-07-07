@@ -25,7 +25,7 @@
             <p><strong>Roast</strong></p>
             <label for="roast-selection" class="mr-sm-2 sr-only"></label>
             <select id="roast-selection" class="custom-select mr-sm-2">
-                <option>all</option>
+                <option selected>all</option>
                 <option>light</option>
                 <option>medium</option>
                 <option>dark</option>
@@ -37,14 +37,12 @@
 
         <div>
             <p><strong>Coffee Name</strong></p>
-            <input id="input-form" type="text" class="form-control">
-        </div>
+            <input id="name-input" type="text" class="form-control" name="name-input" oninput="autofillCoffee()">
         <br>
-        <div>
             <input id="submit2" type="submit" class="btn btn-primary btn-lg btn-block"/>
         </div>
 
-            <!-- Add A Coffee Section       -->
+           <!-- Add A Coffee Section       -->
         <hr>
         <h1 class="text-center">Add A Coffee</h1>
         <form>
