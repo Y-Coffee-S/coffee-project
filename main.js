@@ -22,10 +22,15 @@ function renderCoffees(coffees) {
 function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
     var selectedRoast = roastSelection.value;
+    var selectedName = nameInput.value;
     var filteredCoffees = [];
     coffees.forEach(function (coffee) {
         if (coffee.roast === selectedRoast) {
-            filteredCoffees.push(coffee);
+           if(coffee.name.toLowerCase().includes(selectedName.toLowerCase())) {
+               filteredCoffees.push(coffee);
+           } else if('' === selectedName) {
+               filteredCoffees.push(coffee);
+           }
         }
     });
     tbody.innerHTML = renderCoffees(filteredCoffees);
@@ -53,6 +58,7 @@ var coffees = [
 var tbody = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
+var nameInput = document.querySelector('#name-input');
 
 tbody.innerHTML = renderCoffees(coffees);
 
@@ -73,83 +79,8 @@ coffees.sort(function compareCoffee(a, b) {
 
 ////////////////////////////////////////////////////////////////////////
 
-/*list of available options*/
-var n= coffees.length; //length of datalist tags
-
-function ac(value) {
-    document.getElementById('datalist').innerHTML = '';
-    //setting datalist empty at the start of function
-    //if we skip this step, same name will be repeated
-
-    let l;
-    l=value.length;
-    //input query length
-    for (var i = 0; i<n; i++) {
-        if(((coffees[i].toLowerCase()).indexOf(value.toLowerCase()))>-1)
-        {
-            //comparing if input string is existing in tags[i] string
-
-            var node = document.createElement("option");
-            var val = document.createTextNode(coffees[i]);
-            node.appendChild(val);
-
-            document.getElementById("datalist").appendChild(node);
-            //creating and appending new elements in data list
-        }
-    }
-}
 
 
 // Coffee Name Section Below
 
 ////////////////////////////////////////////////////////////////////////
-
-// var interval = 0;
-// var callInterval = null;
-//
-// function registerEvents(){
-//     $("#input-form").on("keydown", function(e){
-//         var keyCode = e.keyCode ? e.keyCode : e.which;
-//         console.log(keyCode);
-//         if(!callInterval){
-//             intervalInit();
-//         }
-//         else{
-//             resetInterval();
-//         }
-//     });
-// }
-//
-// function intervalInit(){
-//     interval = 0;
-//     callInterval = setInterval(function(){
-//         interval++;
-//         if(interval >=1){
-//             fetchAutoCompleteData($("#input-form").val());
-//             window.clearInterval(callInterval);
-//             callInterval = null;
-//         }
-//     },1000);
-// }
-// function renderCoffees(coffees) {
-//     var html = '';
-//     for(var i = coffees.length - 1; i >= 0; i--) {
-//         html += renderCoffee(coffees[i]);
-//     }
-//     return html;
-// }
-// function resetInterval(){
-//     window.clearInterval(callInterval);
-//     intervalInit()
-// }
-//
-// function fetchAutoCompleteData(coffees){
-//     console.log("Data: ", coffees);
-// }
-// (function(){
-//     registerEvents();
-// })()
-// var bandA = document.querySelector('#input-form'); // Location of what's being typed in
-// bandA.addEventListener('keyup', function test() {
-//     document.querySelector('#coffees').innerHTML = renderCoffees(coffees);
-// });
