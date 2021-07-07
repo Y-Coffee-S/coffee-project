@@ -1,5 +1,5 @@
 "use strict"
-
+// Main Roast Section
 function renderCoffee(coffee) {
     var html = '<div class="coffee">';
     // html += '<td>' + coffee.id + '</td>';
@@ -48,6 +48,7 @@ var coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
+
 var tbody = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
@@ -56,3 +57,58 @@ tbody.innerHTML = renderCoffees(coffees);
 
 submitButton.addEventListener('click', updateCoffees);
 
+////////////////////////////////////////////////////////////////////////
+
+// Coffee Name Section Below
+
+////////////////////////////////////////////////////////////////////////
+
+var interval = 0;
+var callInterval = null;
+
+function registerEvents(){
+    $("#input-form").on("keydown", function(e){
+        var keyCode = e.keyCode ? e.keyCode : e.which;
+        console.log(keyCode);
+        if(!callInterval){
+            intervalInit();
+        }
+        else{
+            resetInterval();
+        }
+    });
+}
+
+function intervalInit(){
+    interval = 0;
+    callInterval = setInterval(function(){
+        interval++;
+        if(interval >=1){
+            fetchAutoCompleteData($("#input-form").val());
+            window.clearInterval(callInterval);
+            callInterval = null;
+        }
+    },1000);
+}
+function renderCoffees(coffees) {
+    var html = '';
+    for(var i = coffees.length - 1; i >= 0; i--) {
+        html += renderCoffee(coffees[i]);
+    }
+    return html;
+}
+function resetInterval(){
+    window.clearInterval(callInterval);
+    intervalInit()
+}
+
+function fetchAutoCompleteData(coffees){
+    console.log("Data: ", coffees);
+}
+(function(){
+    registerEvents();
+})()
+// var bandA = document.querySelector('#input-form'); // Location of what's being typed in
+// bandA.addEventListener('keyup', function test() {
+//     document.querySelector('#coffees').innerHTML = renderCoffees(coffees);
+// });
