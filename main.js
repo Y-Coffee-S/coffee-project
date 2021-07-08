@@ -13,7 +13,7 @@ function renderCoffee(coffee) {
 
 function renderCoffees(coffees) {
     var html = '';
-    for (var i = 0; i < coffees.length; i++) {
+    for (let i = 0; i < coffees.length; i++) {
         html += renderCoffee(coffees[i]);
     }
     return html;
@@ -25,12 +25,10 @@ function updateCoffees(e) {
     var selectedName = nameInput.value;
     var filteredCoffees = [];
     coffees.forEach(function (coffee) {
-        if (coffee.roast === selectedRoast) {
-           if(coffee.name.toLowerCase().includes(selectedName.toLowerCase())) {
-               filteredCoffees.push(coffee);
-           } else if('' === selectedName) {
-               filteredCoffees.push(coffee);
-           }
+        if (coffee.roast === selectedRoast && coffee.name.toLowerCase().includes(selectedName.toLowerCase())) {
+            filteredCoffees.push(coffee);
+        } else if ('all' === selectedRoast && coffee.name.toLowerCase().includes(selectedName.toLowerCase())) {
+            filteredCoffees.push(coffee);
         }
     });
     tbody.innerHTML = renderCoffees(filteredCoffees);
@@ -63,22 +61,23 @@ var nameInput = document.querySelector('#name-input');
 tbody.innerHTML = renderCoffees(coffees);
 
 submitButton.addEventListener('click', updateCoffees);
+roastSelection.addEventListener('change', updateCoffees);
+nameInput.addEventListener('change', updateCoffees);
 
 //Ascending Order
 ////////////////////////////////////////////////////////////////////////
-coffees.sort(function compareCoffee(a, b) {
-    const value1 = a.name.toUpperCase();
-    const value2 = b.name.toUpperCase();
-    if (value1 < value2)
-        return -1
-    if (value1 > value2)
-        return 1
-    return 0
-});
+// coffees.sort(function compareCoffee(a, b) {
+//     const value1 = a.name.toUpperCase();
+//     const value2 = b.name.toUpperCase();
+//     if (value1 < value2)
+//         return -1
+//     if (value1 > value2)
+//         return 1
+//     return 0
+// });
 
 
 ////////////////////////////////////////////////////////////////////////
-
 
 
 // Coffee Name Section Below
