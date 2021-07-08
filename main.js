@@ -80,7 +80,7 @@ var listCoffees = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
 var nameInput = document.querySelector('#name-input');
-var addcoffee = document.querySelector('#btn-AddC');
+var addCoffee = document.querySelector('#btn-AddC');
 var newCoffeeName = document.querySelector('#cName');
 var newCoffeeRoast = document.querySelector('#cRoast');
 
@@ -90,4 +90,4 @@ listCoffees.innerHTML = renderCoffees(coffees.sort(function(a, b){return a.id-b.
 submitButton.addEventListener('click', updateCoffees);
 roastSelection.addEventListener('change', updateCoffees);
 nameInput.addEventListener("keyup", searchCoffees);
-addcoffee.addEventListener("click", addC);
+addCoffee.addEventListener("click", addC);
