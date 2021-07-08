@@ -21,54 +21,40 @@
 <hr>
 <div class="row-6">
     <div class="col-6" id="coffeez">
+    <h2 class="text-center">Select Your Roast</h2>
         <form>
-            <p><strong>Roast</strong></p>
-            <label for="roast-selection" class="mr-sm-2 sr-only"></label>
-            <select id="roast-selection" class="custom-select mr-sm-2">
-                <option selected>all</option>
-                <option>light</option>
-                <option>medium</option>
-                <option>dark</option>
-            </select>
-            <br>
-        </form>
-        <br>
-        <input id="submit" type="submit" class="btn btn-primary btn-lg btn-block"/>
+            <div class="form-group"></div>
+                <label for="roast-selection" class="font-weight-bold">Coffee Roast</label>
+                    <select id="roast-selection" class="custom-select mr-sm-2">
+                        <option selected>all</option>
+                        <option>light</option>
+                        <option>medium</option>
+                        <option>dark</option>
+                     </select>
+            <input id="submit" style="display:none"/>
+            </form>
 
-
-        <div>
-            <p><strong>Coffee Name</strong></p>
-            <input id="name-input" type="text" class="form-control" name="name-input">
-            <br>
-            <input id="submit2" type="submit" class="btn btn-primary btn-lg btn-block"/>
+        <div class="form-group">
+            <label for="name-input" class = "font-weight-bold">Coffee Name</label>
+                <input id="name-input" type="text" class="form-control" >
         </div>
-
-
         <!-- Add A Coffee Section       -->
-        <hr>
-        <h1 class="text-center">Add A Coffee</h1>
-        <form>
-            <p><strong>Roast</strong></p>
-            <label for="roast-selection2" class="mr-sm-2 sr-only"></label>
-            <select id="roast-selection2" class="custom-select mr-sm-2">
-                <option>all</option>
-                <option>light</option>
-                <option>medium</option>
-                <option>dark</option>
-            </select>
-            <br>
-        </form>
-        <br>
-        <input id="submit3" type="submit" class="btn btn-primary btn-lg btn-block"/>
-
+        <h2 class="text-center">Add A Coffee</h2>
+            <form>
+                <label for="cRoast" class="font-weight-bold">Coffee Roast</label>
+                <select id="cRoast" class="custom-select mr-sm-2">
+                    <option>light</option>
+                    <option>medium</option>
+                    <option>dark</option>
+                </select>
+                <br>
+            </form>
         <div>
-            <p><strong>Name</strong></p>
-            <input type="text" class="form-control">
+            <label for="cName" class="font-weight-bold">Name</label>
+            <input id="cName" text="search" aria-label="Search" class="form-control">
         </div>
         <br>
-        <div>
-            <input id="submit4" type="submit" class="btn btn-primary btn-lg btn-block"/>
-        </div>
+        <button id="btn-AddC" type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
     </div>
     <div class="col-6">
         <span id="coffees"></span>
